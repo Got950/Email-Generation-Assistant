@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "intent": "Follow up after a product demo meeting",
+    "key_facts": [
+      "Demo was conducted on April 3rd via Zoom",
+      "Client showed strong interest in the automated reporting module",
+      "A 14-day free trial was offered as the next step",
+      "The client's team size is 50 people"
+    ],
+    "tone": "formal",
+    "reference_email": "Subject: Next Steps Following Our April 3rd Product Demo\n\nDear Team,\n\nThank you for joining us on the Zoom call on April 3rd to explore our platform. It was excellent to see your team's enthusiasm, particularly around the automated reporting module.\n\nGiven your team of 50, I believe the reporting capabilities will streamline your workflows significantly. To help you experience the value firsthand, we'd love to set up a complimentary 14-day free trial tailored to your environment.\n\nWould you be available for a brief call this week to get things started? I'm happy to work around your schedule.\n\nBest regards,"
+  },
+  {
+    "id": 2,
+    "intent": "Request proposal details from a potential vendor",
+    "key_facts": [
+      "Our company is evaluating three vendors for CRM migration",
+      "We need the proposal by May 15th",
+      "Budget range is $50,000 to $75,000",
+      "Migration must support 10,000 customer records"
+    ],
+    "tone": "professional",
+    "reference_email": "Subject: Request for CRM Migration Proposal — Due May 15th\n\nHello,\n\nWe are currently evaluating vendors for an upcoming CRM migration project and would like to invite your team to submit a proposal.\n\nFor context, we are assessing three vendors in parallel. Our budget range for this engagement is $50,000 to $75,000, and the solution must accommodate a seamless migration of approximately 10,000 customer records.\n\nCould you please provide a detailed proposal by May 15th? We'd appreciate a breakdown of timeline, approach, and pricing. Please don't hesitate to reach out if you need any additional information from our side.\n\nBest regards,"
+  },
+  {
+    "id": 3,
+    "intent": "Cold outreach to a prospective client about our sales automation tool",
+    "key_facts": [
+      "Prospect's company recently raised a Series B round",
+      "Our tool has helped similar companies increase outbound reply rates by 35%",
+      "Offering a free personalized demo",
+      "We integrate with Salesforce and HubSpot"
+    ],
+    "tone": "friendly-casual",
+    "reference_email": "Subject: Congrats on the Series B — Quick Idea for Your Sales Team\n\nHi there,\n\nFirst off, congrats on the Series B — exciting times! I came across your team and thought there might be a great fit here.\n\nWe've built a sales automation tool that integrates directly with Salesforce and HubSpot. Companies at a similar growth stage have seen outbound reply rates jump by 35% after switching to our platform.\n\nI'd love to set up a free personalized demo so you can see how it works for your specific workflow. No strings attached — just 20 minutes.\n\nWould you be open to a quick chat this week?\n\nBest regards,"
+  },
+  {
+    "id": 4,
+    "intent": "Apologize for a missed project deadline",
+    "key_facts": [
+      "The deliverable was due on March 28th",
+      "Delay was caused by unexpected API integration issues",
+      "Revised delivery date is April 5th",
+      "A 10% discount on the invoice will be applied"
+    ],
+    "tone": "empathetic",
+    "reference_email": "Subject: Sincere Apology for the Delayed Deliverable\n\nDear Team,\n\nI want to sincerely apologize for missing the March 28th deadline for your deliverable. I understand how important timely delivery is to your planning, and I take full responsibility for this delay.\n\nThe root cause was an unexpected set of API integration issues that our team encountered during the final phase. We've since resolved these challenges and have been working around the clock to finalize everything.\n\nThe revised delivery date is April 5th, and I'm confident we will meet it. As a gesture of accountability, we will be applying a 10% discount on the invoice for this project.\n\nThank you for your patience and understanding. Please don't hesitate to reach out if you have any concerns.\n\nBest regards,"
+  },
+  {
+    "id": 5,
+    "intent": "Introduce a new AI-powered feature to existing customers",
+    "key_facts": [
+      "New feature is called Smart Compose",
+      "It uses GPT-4 to auto-draft email replies",
+      "Available to all Pro plan users starting April 10th",
+      "Early access beta showed a 40% reduction in email drafting time"
+    ],
+    "tone": "excited",
+    "reference_email": "Subject: Introducing Smart Compose — AI-Powered Email Drafting Is Here!\n\nHi there,\n\nWe're thrilled to share something we've been working on — Smart Compose is officially launching on April 10th for all Pro plan users!\n\nSmart Compose uses GPT-4 to auto-draft email replies based on conversation context. During our early access beta, users reported a 40% reduction in email drafting time. That's hours saved every single week.\n\nYou don't need to do anything — it'll be available in your dashboard automatically on launch day. We can't wait for you to try it!\n\nBest regards,"
+  },
+  {
+    "id": 6,
+    "intent": "Schedule a quarterly business review meeting",
+    "key_facts": [
+      "QBR is for Q1 2026 results",
+      "Proposed dates are April 20th or April 22nd",
+      "Meeting will cover revenue metrics and product roadmap",
+      "Attendees should include VP of Sales and Head of Product"
+    ],
+    "tone": "neutral",
+    "reference_email": "Subject: Scheduling Q1 2026 Quarterly Business Review\n\nHello,\n\nI'd like to schedule our Q1 2026 Quarterly Business Review. The meeting will cover revenue metrics and the upcoming product roadmap.\n\nCould we target either April 20th or April 22nd? Please let me know which date works best for your team. I'd recommend we have both the VP of Sales and Head of Product join the discussion to ensure alignment on priorities.\n\nPlease confirm your availability at your earliest convenience so I can send out calendar invitations.\n\nBest regards,"
+  },
+  {
+    "id": 7,
+    "intent": "Respond to a client's pricing objection",
+    "key_facts": [
+      "Client said the annual plan at $24,000 is above their budget",
+      "We offer a quarterly payment option to ease cash flow",
+      "Competitor pricing is lower but lacks our real-time analytics feature",
+      "Existing customers report 3x ROI within the first year"
+    ],
+    "tone": "persuasive",
+    "reference_email": "Subject: Making the Investment Work for Your Team\n\nHi,\n\nI completely understand budget considerations are a key factor in this decision, and I appreciate you being upfront about it.\n\nWhile the $24,000 annual plan is an investment, I'd like to highlight a couple of things worth considering. First, we offer a quarterly payment option that can make the cash flow much more manageable. Second, our existing customers consistently report achieving 3x ROI within their first year — meaning the platform pays for itself and then some.\n\nI also want to be transparent: while some alternatives come in at a lower price point, they typically don't offer the real-time analytics capabilities that drive those returns. That feature alone is what our clients point to as the biggest differentiator.\n\nWould it be helpful to walk through a quick ROI projection based on your team's specific numbers?\n\nBest regards,"
+  },
+  {
+    "id": 8,
+    "intent": "Thank a client for referring a new customer",
+    "key_facts": [
+      "The referred company is TechNova Inc.",
+      "They signed a 2-year enterprise contract",
+      "A $500 referral credit has been applied to the client's account",
+      "The referral program offers additional bonuses for future referrals"
+    ],
+    "tone": "warm-grateful",
+    "reference_email": "Subject: Thank You for the TechNova Referral!\n\nHi,\n\nI just wanted to reach out personally to say a huge thank you for referring TechNova Inc. to us. They were a fantastic fit, and I'm excited to share that they've signed a 2-year enterprise contract!\n\nAs a token of our appreciation, we've applied a $500 referral credit to your account — you should see it reflected already. And just so you know, our referral program continues to offer additional bonuses for any future introductions you make.\n\nReferrals like yours mean the world to us. Thank you for trusting us enough to recommend us to your network.\n\nBest regards,"
+  },
+  {
+    "id": 9,
+    "intent": "Escalate an unresolved customer support issue internally",
+    "key_facts": [
+      "Ticket #4892 has been open for 7 days without resolution",
+      "Customer is on the Enterprise plan paying $8,000/month",
+      "Issue involves data export failures affecting their monthly reporting",
+      "Customer has threatened to churn if not resolved by Friday"
+    ],
+    "tone": "urgent",
+    "reference_email": "Subject: URGENT — Escalation Required: Ticket #4892 (Enterprise Client at Churn Risk)\n\nTeam,\n\nI need to flag an urgent escalation. Ticket #4892 has been open for 7 days without resolution, and the situation is now critical.\n\nThe affected customer is on our Enterprise plan at $8,000/month. They are experiencing persistent data export failures that are blocking their monthly reporting cycle. They have explicitly communicated that if this is not resolved by Friday, they will be canceling their contract.\n\nWe cannot afford to lose this account. I need engineering to prioritize a root cause analysis today and provide the customer with a concrete resolution timeline by end of day tomorrow at the latest.\n\nPlease confirm who is taking ownership of this.\n\nBest regards,"
+  },
+  {
+    "id": 10,
+    "intent": "Re-engage a dormant lead who hasn't responded in 3 months",
+    "key_facts": [
+      "Last conversation was at the SaaS Connect conference in January",
+      "They were evaluating solutions for their sales outreach process",
+      "We've since launched a new AI dialer feature",
+      "Offering an exclusive 25% discount for conference contacts"
+    ],
+    "tone": "casual-compelling",
+    "reference_email": "Subject: Still Thinking About Sales Outreach? We've Got Something New\n\nHey there,\n\nIt's been a while since we connected at SaaS Connect back in January — hope things have been going well on your end!\n\nI remember you were exploring options to level up your sales outreach process, so I wanted to loop back with some news. We just launched an AI dialer feature that's been a game-changer for teams doing high-volume outbound. Thought it might be right up your alley.\n\nAlso, we're running an exclusive 25% discount for folks we met at the conference — figured I'd make sure you didn't miss out.\n\nWant to hop on a quick call and I can show you what's new? No pressure at all.\n\nBest regards,"
+  }
+]
