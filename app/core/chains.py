@@ -14,7 +14,7 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.prompts import ChatPromptTemplate
 
 from app.config import get_settings
-from app.core.models import get_baseline_model, get_primary_model, invoke_with_retry, _build_model
+from app.core.models import _build_model, get_baseline_model, get_primary_model, invoke_with_retry
 from app.core.prompts import (
     build_advanced_prompt,
     build_baseline_prompt,

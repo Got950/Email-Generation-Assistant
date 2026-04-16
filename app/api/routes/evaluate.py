@@ -7,10 +7,10 @@ from fastapi.responses import StreamingResponse
 from app.api.schemas import EvaluationRequest, EvaluationResponse
 from app.core.chains import STRATEGY_MAP
 from app.evaluation.runner import (
+    _compute_summary,
     evaluate_single_scenario,
     load_scenarios,
     run_evaluation,
-    _compute_summary,
 )
 
 logger = logging.getLogger(__name__)

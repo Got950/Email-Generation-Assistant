@@ -1,0 +1,543 @@
+{
+  "metadata": {
+    "generated_at": "2026-04-16T05:13:36.735715+00:00",
+    "total_scenarios": 10,
+    "strategies_evaluated": [
+      "advanced",
+      "baseline"
+    ]
+  },
+  "metric_definitions": [
+    {
+      "name": "Fact Recall",
+      "description": "Measures whether ALL key facts from the input are present in the generated email, using LLM-as-Judge per-fact verification with sentence-transformer semantic similarity as a fallback.",
+      "scoring": "0-100 scale. Score = (facts_confirmed / total_facts) * 100"
+    },
+    {
+      "name": "Tone Alignment",
+      "description": "Measures whether the generated email's tone matches the requested tone, using LLM-as-Judge rating (80% weight) combined with VADER sentiment analysis as a sanity check (20% weight).",
+      "scoring": "0-100 scale. Weighted combination of LLM judge (1-10) and sentiment signal (0-10)."
+    },
+    {
+      "name": "Professional Quality",
+      "description": "Composite metric measuring overall email quality through four sub-dimensions: Readability (Flesch Reading Ease), Conciseness (length ratio vs reference), Structure (greeting/body/sign-off checks), and Grammar & Fluency (LLM judge).",
+      "scoring": "0-100 scale. Sum of four sub-scores, each 0-25."
+    }
+  ],
+  "results": [
+    {
+      "scenario_id": 1,
+      "intent": "Follow up after a product demo meeting",
+      "tone": "formal",
+      "strategy": "advanced",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Next Steps Following Our April 3rd Demo\n\nDear [Client's Name/Team],\n\nThank you for attending the product demonstration via Zoom on April 3rd. It was a pleasure to showcase our platform and discuss its features with your team.\n\nI noted your strong interest in the automated reporting module, which I believe will significantly enhance your reporting capabilities. To facilitate your exploration of this feature, I would like to offer a complimentary 14-day free trial tailored for your team of 50 people.\n\nCould we schedule a brief call this week to set up the trial? I am happy to accommodate your availability.\n\nThank you once again for your interest, and I look forward to your response.\n\nBest regards,\n\n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 86.0,
+          "details": "LLM judge: 9/10, Sentiment signal: 7.0/10, Weighted: 86.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 92.5,
+          "details": "Readability: FRE=51.2 -> 25.0/25 | Conciseness: Words: 126 vs ref 100 (ratio=1.26) -> 25.0/25 | Structure: 4/5 checks passed (missing: no_placeholders) | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 2,
+      "intent": "Request proposal details from a potential vendor",
+      "tone": "professional",
+      "strategy": "advanced",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Request for Proposal Details for CRM Migration\n\nDear [Vendor's Name],\n\nI hope this message finds you well. Our company is currently evaluating three vendors for our CRM migration project, and we would appreciate your proposal by May 15th in order to make an informed decision.\n\nPlease ensure that your proposal accommodates a budget range of $50,000 to $75,000 and supports the migration of 10,000 customer records. We are looking forward to understanding how your solution aligns with our requirements.\n\nThank you for your attention to this request. \n\nBest regards,",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 89.0,
+          "details": "LLM judge: 9/10, Sentiment signal: 8.5/10, Weighted: 89.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 87.5,
+          "details": "Readability: FRE=47.6 -> 20.0/25 | Conciseness: Words: 90 vs ref 101 (ratio=0.89) -> 25.0/25 | Structure: 4/5 checks passed (missing: no_placeholders) | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 3,
+      "intent": "Cold outreach to a prospective client about our sales automation tool",
+      "tone": "friendly-casual",
+      "strategy": "advanced",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Unlock Higher Reply Rates with Our Sales Automation Tool\n\nHi [Prospect's Name],\n\nCongratulations on your recent Series B funding! That's an exciting milestone for your company. I wanted to reach out because our sales automation tool has helped similar companies boost their outbound reply rates by 35%, and I believe it could do the same for you.\n\nWe seamlessly integrate with both Salesforce and HubSpot, making it easy to enhance your existing processes. I’d love to show you how it works with a free personalized demo. Would you be available for a quick chat this week?\n\nLooking forward to connecting!\n\nBest,  \n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]  \n\n(Note: Please replace placeholders with actual names and contact information.)",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 60.0,
+          "details": "LLM judge: 5/10, Sentiment signal: 10.0/10, Weighted: 60.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 87.5,
+          "details": "Readability: FRE=54.4 -> 25.0/25 | Conciseness: Words: 121 vs ref 110 (ratio=1.10) -> 25.0/25 | Structure: 3/5 checks passed (missing: sign_off, no_placeholders) | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 4,
+      "intent": "Apologize for a missed project deadline",
+      "tone": "empathetic",
+      "strategy": "advanced",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Our Apology for the Delayed Deliverable\n\nDear [Recipient's Name],\n\nI hope this message finds you well. I want to sincerely apologize for not meeting the deliverable deadline on March 28th. We encountered unexpected API integration issues that have unfortunately set us back.\n\nI understand how important this project is for you, and I assure you that we are working diligently to resolve the outstanding issues. We anticipate having everything ready for you by April 5th. As a token of our commitment to you, we will also apply a 10% discount on your upcoming invoice.\n\nThank you for your understanding and patience during this time. We appreciate your partnership and are dedicated to ensuring your satisfaction.\n\nBest regards,",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 89.0,
+          "details": "LLM judge: 9/10, Sentiment signal: 8.5/10, Weighted: 89.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 87.5,
+          "details": "Readability: FRE=43.5 -> 20.0/25 | Conciseness: Words: 118 vs ref 127 (ratio=0.93) -> 25.0/25 | Structure: 4/5 checks passed (missing: no_placeholders) | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 5,
+      "intent": "Introduce a new AI-powered feature to existing customers",
+      "tone": "excited",
+      "strategy": "advanced",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Exciting News: Introducing Smart Compose!\n\nHi there,\n\nI’m thrilled to announce the launch of our new AI-powered feature, Smart Compose, available to all Pro plan users starting April 10th! This innovative tool leverages GPT-4 technology to auto-draft your email replies, saving you valuable time and streamlining your communication process.\n\nIn our early access beta, users experienced a remarkable 40% reduction in email drafting time. We believe Smart Compose will significantly enhance your productivity and make your email management even more efficient!\n\nStay tuned for more updates, and get ready to take advantage of this fantastic feature!\n\nBest regards,",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 92.0,
+          "details": "LLM judge: 9/10, Sentiment signal: 10.0/10, Weighted: 92.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 87.5,
+          "details": "Readability: FRE=37.1 -> 15.0/25 | Conciseness: Words: 99 vs ref 94 (ratio=1.05) -> 25.0/25 | Structure: 5/5 checks passed | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 6,
+      "intent": "Schedule a quarterly business review meeting",
+      "tone": "neutral",
+      "strategy": "advanced",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Scheduling Our Q1 2026 Business Review Meeting\n\nDear Team,\n\nI hope this message finds you well. I would like to schedule our quarterly business review meeting to discuss the results from Q1 2026, specifically focusing on revenue metrics and our product roadmap.\n\nI propose two potential dates for this meeting: April 20th or April 22nd. It would be beneficial for the VP of Sales and the Head of Product to attend as key stakeholders in our discussion.\n\nPlease let me know which date works best for your team.\n\nBest regards,",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 89.0,
+          "details": "LLM judge: 9/10, Sentiment signal: 8.5/10, Weighted: 89.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 97.5,
+          "details": "Readability: FRE=62.9 -> 25.0/25 | Conciseness: Words: 91 vs ref 87 (ratio=1.05) -> 25.0/25 | Structure: 5/5 checks passed | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 7,
+      "intent": "Respond to a client's pricing objection",
+      "tone": "persuasive",
+      "strategy": "advanced",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Addressing Your Pricing Concerns\n\nDear [Client's Name],\n\nThank you for sharing your thoughts regarding our annual plan pricing at $24,000. I understand that it exceeds your current budget, but I want to highlight a few options that could better align with your financial considerations.\n\nTo ease cash flow, we offer a quarterly payment plan that allows you to access our comprehensive features without the burden of a large upfront cost. While I recognize that competitor pricing may be lower, many of them do not include our real-time analytics feature, which is critical for informed decision-making and can significantly enhance your operational efficiency.\n\nMoreover, our existing customers have reported an impressive threefold ROI within the first year of using our solution. This demonstrates the long-term value and return on investment that our offering can provide, making it a worthwhile consideration despite the initial cost.\n\nI would be happy to discuss this further and explore how we can make our offering work within your budget. Your success is important to us, and I believe we can find a solution that meets your needs.\n\nBest regards,\n\n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 81.0,
+          "details": "LLM judge: 8/10, Sentiment signal: 8.5/10, Weighted: 81.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 77.5,
+          "details": "Readability: FRE=40.0 -> 15.0/25 | Conciseness: Words: 193 vs ref 146 (ratio=1.32) -> 20.0/25 | Structure: 4/5 checks passed (missing: no_placeholders) | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 8,
+      "intent": "Thank a client for referring a new customer",
+      "tone": "warm-grateful",
+      "strategy": "advanced",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Thank You for Your Referral!\n\nDear [Client's Name],\n\nI hope this message finds you well! I wanted to take a moment to express our heartfelt gratitude for referring TechNova Inc. to us. We are thrilled to share that they have signed a 2-year enterprise contract, and we couldn't have done it without your support.\n\nAs a token of our appreciation, we have applied a $500 referral credit to your account. Additionally, our referral program offers exciting bonuses for any future referrals, so keep us in mind!\n\nThank you once again for your trust and partnership. We truly value your support.\n\nBest regards,",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 92.0,
+          "details": "LLM judge: 9/10, Sentiment signal: 10.0/10, Weighted: 92.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 92.5,
+          "details": "Readability: FRE=62.3 -> 25.0/25 | Conciseness: Words: 103 vs ref 107 (ratio=0.96) -> 25.0/25 | Structure: 4/5 checks passed (missing: no_placeholders) | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 9,
+      "intent": "Escalate an unresolved customer support issue internally",
+      "tone": "urgent",
+      "strategy": "advanced",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Urgent Escalation: Unresolved Support Ticket #4892\n\nDear Team,\n\nI am reaching out to escalate an unresolved customer support issue that requires immediate attention. Ticket #4892 has been open for 7 days without resolution, and our customer on the Enterprise plan, paying $8,000 per month, is experiencing critical data export failures that are impacting their monthly reporting.\n\nThe situation has escalated to the point where the customer has threatened to churn if we do not resolve this issue by Friday. It is crucial that we prioritize this matter and provide a swift resolution to retain their business.\n\nThank you for your prompt attention to this urgent issue.\n\nBest regards,",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 97.0,
+          "details": "LLM judge: 10/10, Sentiment signal: 8.5/10, Weighted: 97.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 87.5,
+          "details": "Readability: FRE=38.8 -> 15.0/25 | Conciseness: Words: 109 vs ref 122 (ratio=0.89) -> 25.0/25 | Structure: 5/5 checks passed | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 10,
+      "intent": "Re-engage a dormant lead who hasn't responded in 3 months",
+      "tone": "casual-compelling",
+      "strategy": "advanced",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Exciting Updates Since Our Last Chat!\n\nHey there,\n\nIt’s been a while since we connected at the SaaS Connect conference in January! I hope all has been well with you and your team as you evaluate solutions for your sales outreach process.\n\nI’m excited to share that we’ve just launched a new AI dialer feature that could really enhance your outreach efforts. Plus, as a special thank you for connecting with us at the conference, we’re offering an exclusive 25% discount just for our conference contacts. I’d love to catch up and discuss how this could fit into your strategy.\n\nHow about a quick call this week? Let me know what works for you!\n\nLooking forward to hearing from you!\n\nBest,  \n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 89.0,
+          "details": "LLM judge: 9/10, Sentiment signal: 8.5/10, Weighted: 89.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 87.5,
+          "details": "Readability: FRE=71.5 -> 20.0/25 | Conciseness: Words: 131 vs ref 124 (ratio=1.06) -> 25.0/25 | Structure: 4/5 checks passed (missing: no_placeholders) | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 1,
+      "intent": "Follow up after a product demo meeting",
+      "tone": "formal",
+      "strategy": "baseline",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Follow-Up on Product Demo and Next Steps\n\nDear [Client's Name],\n\nI hope this message finds you well. I wanted to take a moment to follow up on the product demonstration we conducted on April 3rd via Zoom. Thank you for your time and engagement during the session.\n\nI was pleased to note your team’s strong interest in the automated reporting module. I believe this feature could significantly enhance the efficiency of your operations, especially for your team of 50 people.\n\nAs discussed, we would like to offer you a 14-day free trial of the product. This will allow you to explore the functionalities of our solution and see firsthand how it can benefit your team.\n\nPlease let me know if you have any questions or if you would like to proceed with the trial. I look forward to your response.\n\nBest regards,\n\n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 86.0,
+          "details": "LLM judge: 9/10, Sentiment signal: 7.0/10, Weighted: 86.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 87.5,
+          "details": "Readability: FRE=64.0 -> 25.0/25 | Conciseness: Words: 152 vs ref 100 (ratio=1.52) -> 20.0/25 | Structure: 4/5 checks passed (missing: no_placeholders) | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 2,
+      "intent": "Request proposal details from a potential vendor",
+      "tone": "professional",
+      "strategy": "baseline",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Request for Proposal Details for CRM Migration\n\nDear [Vendor's Name],\n\nI hope this message finds you well.\n\nWe are currently in the process of evaluating three potential vendors for our CRM migration project and would like to request a detailed proposal from your team. The key requirements for the migration include support for up to 10,000 customer records.\n\nOur budget for this project ranges from $50,000 to $75,000. We kindly ask that you provide your proposal by May 15th to ensure we can review all options in a timely manner.\n\nThank you for considering this opportunity. We look forward to your response.\n\nBest regards,\n\n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 94.0,
+          "details": "LLM judge: 10/10, Sentiment signal: 7.0/10, Weighted: 94.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 92.5,
+          "details": "Readability: FRE=58.1 -> 25.0/25 | Conciseness: Words: 114 vs ref 101 (ratio=1.13) -> 25.0/25 | Structure: 4/5 checks passed (missing: no_placeholders) | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 3,
+      "intent": "Cold outreach to a prospective client about our sales automation tool",
+      "tone": "friendly-casual",
+      "strategy": "baseline",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Boost Your Sales with Our Automation Tool – Free Demo Inside!\n\nHi [Prospect's Name],\n\nI hope this message finds you well! I recently came across the exciting news about [Prospect's Company] raising a Series B round—congratulations to you and your team!\n\nAs you look to scale your sales efforts, I wanted to introduce you to our sales automation tool that has helped companies similar to yours increase their outbound reply rates by an impressive 35%. We understand that maximizing outreach can be a game-changer, especially during this growth phase.\n\nWhat’s more, our tool seamlessly integrates with both Salesforce and HubSpot, making it easy for your team to adopt without disrupting your existing workflows.\n\nI’d love to offer you a free personalized demo to show you how our solution can specifically benefit [Prospect's Company]. Would you be available for a quick chat next week?\n\nLooking forward to connecting!\n\nBest,  \n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 68.0,
+          "details": "LLM judge: 6/10, Sentiment signal: 10.0/10, Weighted: 68.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 82.5,
+          "details": "Readability: FRE=53.0 -> 25.0/25 | Conciseness: Words: 158 vs ref 110 (ratio=1.44) -> 20.0/25 | Structure: 3/5 checks passed (missing: sign_off, no_placeholders) | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 4,
+      "intent": "Apologize for a missed project deadline",
+      "tone": "empathetic",
+      "strategy": "baseline",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Apology for Missed Project Deadline\n\nDear [Recipient's Name],\n\nI hope this message finds you well. I am writing to sincerely apologize for not delivering the project deliverable by the original deadline of March 28th. Unfortunately, we encountered unexpected API integration issues that delayed our progress.\n\nWe understand the importance of timely deliveries and the impact that delays can have on your plans. To address this, we have worked diligently to resolve the issues, and I am pleased to inform you that we now expect to deliver the completed project by April 5th.\n\nAs a gesture of goodwill, we will also apply a 10% discount on the invoice for this project. We appreciate your understanding and patience during this time, and we are committed to ensuring that the final deliverable meets your expectations.\n\nThank you for your understanding. Please feel free to reach out if you have any questions or concerns.\n\nWarm regards,\n\n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 78.0,
+          "details": "LLM judge: 8/10, Sentiment signal: 7.0/10, Weighted: 78.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 87.5,
+          "details": "Readability: FRE=48.3 -> 20.0/25 | Conciseness: Words: 162 vs ref 127 (ratio=1.28) -> 25.0/25 | Structure: 4/5 checks passed (missing: no_placeholders) | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 5,
+      "intent": "Introduce a new AI-powered feature to existing customers",
+      "tone": "excited",
+      "strategy": "baseline",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Exciting New Feature: Introducing Smart Compose for Our Pro Plan Users!\n\nDear Valued Customer,\n\nWe are thrilled to announce an exciting new feature that will enhance your email experience: Smart Compose!  \n\nStarting April 10th, all Pro plan users will have access to this innovative AI-powered tool, which utilizes the advanced capabilities of GPT-4 to auto-draft email replies. Our early access beta has demonstrated a remarkable 40% reduction in email drafting time, allowing you to focus on what truly matters.\n\nWe can’t wait for you to experience the benefits of Smart Compose and streamline your email communication. Stay tuned for more details as we approach the launch date!\n\nThank you for being a valued member of our community.\n\nBest regards,\n\n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 92.0,
+          "details": "LLM judge: 9/10, Sentiment signal: 10.0/10, Weighted: 92.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 82.5,
+          "details": "Readability: FRE=44.9 -> 20.0/25 | Conciseness: Words: 129 vs ref 94 (ratio=1.37) -> 20.0/25 | Structure: 4/5 checks passed (missing: no_placeholders) | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 6,
+      "intent": "Schedule a quarterly business review meeting",
+      "tone": "neutral",
+      "strategy": "baseline",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Scheduling Q1 2026 Quarterly Business Review Meeting\n\nDear [Recipient's Name],\n\nI hope this message finds you well.\n\nI would like to schedule our Quarterly Business Review (QBR) to discuss the results from Q1 2026. The meeting will cover important revenue metrics and our product roadmap moving forward.\n\nI propose the following dates for our meeting: April 20th or April 22nd. Please let me know your availability on these dates, and I will coordinate to ensure that the VP of Sales and the Head of Product can also attend.\n\nThank you, and I look forward to your response.\n\nBest regards,\n\n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 89.0,
+          "details": "LLM judge: 9/10, Sentiment signal: 8.5/10, Weighted: 89.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 92.5,
+          "details": "Readability: FRE=59.1 -> 25.0/25 | Conciseness: Words: 109 vs ref 87 (ratio=1.25) -> 25.0/25 | Structure: 4/5 checks passed (missing: no_placeholders) | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 7,
+      "intent": "Respond to a client's pricing objection",
+      "tone": "persuasive",
+      "strategy": "baseline",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Flexible Payment Options and Unmatched Value for Your Investment\n\nDear [Client's Name],\n\nThank you for your candid feedback regarding our annual plan pricing. I understand that the $24,000 investment may be beyond your current budget, and I want to assure you that we are committed to finding a solution that works for you.\n\nTo ease your cash flow concerns, we offer a quarterly payment option that allows you to spread the cost over the year while still benefiting from our robust services. This flexibility can help you manage expenses without compromising on the value we provide.\n\nWhile I understand that some competitors may offer lower pricing, it's important to highlight that they do not include our unique real-time analytics feature. This capability has proven to be a game-changer for many of our clients. In fact, existing customers report achieving a remarkable 3x return on investment within the first year of using our services. This level of ROI can significantly impact your operations and drive growth, ultimately making our solution a more valuable investment.\n\nI would love the opportunity to discuss this further and explore how we can best align our offerings with your budgetary needs. Please let me know a convenient time for us to connect.\n\nThank you for considering our proposal. I look forward to your response.\n\nBest regards,\n\n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 89.0,
+          "details": "LLM judge: 9/10, Sentiment signal: 8.5/10, Weighted: 89.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 82.5,
+          "details": "Readability: FRE=45.4 -> 20.0/25 | Conciseness: Words: 230 vs ref 146 (ratio=1.58) -> 20.0/25 | Structure: 4/5 checks passed (missing: no_placeholders) | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 8,
+      "intent": "Thank a client for referring a new customer",
+      "tone": "warm-grateful",
+      "strategy": "baseline",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Thank You for Your Referral!\n\nDear [Client's Name],\n\nI hope this message finds you well! I wanted to take a moment to personally thank you for referring TechNova Inc. to us. We are thrilled to share that they have signed a 2-year enterprise contract, and we couldn't have done it without your support!\n\nAs a token of our gratitude, a $500 referral credit has been applied to your account. We truly appreciate your trust in us and your willingness to recommend our services.\n\nAdditionally, I’d like to remind you that our referral program offers further bonuses for any future referrals you may provide. We value your partnership and look forward to continuing to work together.\n\nThank you once again for your support!\n\nWarm regards,\n\n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 92.0,
+          "details": "LLM judge: 9/10, Sentiment signal: 10.0/10, Weighted: 92.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 92.5,
+          "details": "Readability: FRE=59.4 -> 25.0/25 | Conciseness: Words: 134 vs ref 107 (ratio=1.25) -> 25.0/25 | Structure: 4/5 checks passed (missing: no_placeholders) | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 9,
+      "intent": "Escalate an unresolved customer support issue internally",
+      "tone": "urgent",
+      "strategy": "baseline",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Urgent: Escalation of Unresolved Customer Support Issue - Ticket #4892\n\nDear [Team/Manager's Name],\n\nI hope this message finds you well. I am writing to escalate an urgent customer support issue that has remained unresolved for the past seven days, specifically regarding Ticket #4892.\n\nThe customer in question is on our Enterprise plan, contributing $8,000 per month. They are currently experiencing data export failures that are critically impacting their monthly reporting. As a result of this ongoing issue, the customer has expressed dissatisfaction and has threatened to churn if we do not resolve the matter by this Friday.\n\nGiven the potential loss of a high-value client and the implications for our reputation, I urge you to prioritize this ticket and provide an update on the resolution process at your earliest convenience.\n\nThank you for your immediate attention to this matter.\n\nBest regards,\n\n[Your Name]  \n[Your Position]  \n[Your Contact Information]  \n[Your Company]",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 89.0,
+          "details": "LLM judge: 9/10, Sentiment signal: 8.5/10, Weighted: 89.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 82.5,
+          "details": "Readability: FRE=37.8 -> 15.0/25 | Conciseness: Words: 151 vs ref 122 (ratio=1.24) -> 25.0/25 | Structure: 4/5 checks passed (missing: no_placeholders) | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    },
+    {
+      "scenario_id": 10,
+      "intent": "Re-engage a dormant lead who hasn't responded in 3 months",
+      "tone": "casual-compelling",
+      "strategy": "baseline",
+      "model_name": "gpt-4o-mini",
+      "generated_email": "Subject: Exciting Updates and an Exclusive Offer Just for You!  \n\nHi [Recipient's Name],  \n\nI hope this email finds you well! It’s been a while since we last connected at the SaaS Connect conference in January, where we discussed how you were evaluating solutions for your sales outreach process.  \n\nI wanted to reach out and share some exciting news: we've recently launched a new AI dialer feature that I believe could greatly enhance your outreach efforts. This innovative feature is designed to streamline your sales process and improve efficiency, and I think it could be a game-changer for your team.  \n\nAs a token of appreciation for our conversation at the conference, I’d like to offer you an exclusive 25% discount on our services. This is a limited-time offer just for our conference contacts, and I’d love for you to take advantage of it!  \n\nIf you’re interested, let’s schedule a time to reconnect and discuss how our new AI dialer can fit into your sales strategy. I’m looking forward to hearing from you!  \n\nBest,  \n[Your Name]  \n[Your Position]  \n[Your Company]  \n[Your Contact Information]",
+      "scores": [
+        {
+          "metric_name": "Fact Recall",
+          "score": 100.0,
+          "details": "4/4 facts confirmed"
+        },
+        {
+          "metric_name": "Tone Alignment",
+          "score": 81.0,
+          "details": "LLM judge: 8/10, Sentiment signal: 8.5/10, Weighted: 81.0/100"
+        },
+        {
+          "metric_name": "Professional Quality",
+          "score": 82.5,
+          "details": "Readability: FRE=56.2 -> 25.0/25 | Conciseness: Words: 181 vs ref 124 (ratio=1.46) -> 20.0/25 | Structure: 3/5 checks passed (missing: sign_off, no_placeholders) | Grammar: Grammar rating: 9/10 -> 22.5/25"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "advanced": {
+      "Fact Recall": 100.0,
+      "Tone Alignment": 86.4,
+      "Professional Quality": 88.5,
+      "overall_average": 91.6
+    },
+    "baseline": {
+      "Fact Recall": 100.0,
+      "Tone Alignment": 85.8,
+      "Professional Quality": 86.5,
+      "overall_average": 90.8
+    }
+  }
+}

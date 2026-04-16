@@ -1,0 +1,105 @@
+scenario_id,intent,tone,strategy,model_name,fact_recall,tone_alignment,professional_quality,generated_email_preview
+1,Follow up after a product demo meeting,formal,advanced,gpt-4o-mini,100.0,86.0,92.5,"Subject: Next Steps Following Our April 3rd Demo
+
+Dear [Client's Name/Team],
+
+Thank you for attending the product demonstration via Zoom on April 3rd...."
+2,Request proposal details from a potential vendor,professional,advanced,gpt-4o-mini,100.0,89.0,87.5,"Subject: Request for Proposal Details for CRM Migration
+
+Dear [Vendor's Name],
+
+I hope this message finds you well. Our company is currently evaluatin..."
+3,Cold outreach to a prospective client about our sales automation tool,friendly-casual,advanced,gpt-4o-mini,100.0,60.0,87.5,"Subject: Unlock Higher Reply Rates with Our Sales Automation Tool
+
+Hi [Prospect's Name],
+
+Congratulations on your recent Series B funding! That's an e..."
+4,Apologize for a missed project deadline,empathetic,advanced,gpt-4o-mini,100.0,89.0,87.5,"Subject: Our Apology for the Delayed Deliverable
+
+Dear [Recipient's Name],
+
+I hope this message finds you well. I want to sincerely apologize for not ..."
+5,Introduce a new AI-powered feature to existing customers,excited,advanced,gpt-4o-mini,100.0,92.0,87.5,"Subject: Exciting News: Introducing Smart Compose!
+
+Hi there,
+
+I’m thrilled to announce the launch of our new AI-powered feature, Smart Compose, avail..."
+6,Schedule a quarterly business review meeting,neutral,advanced,gpt-4o-mini,100.0,89.0,97.5,"Subject: Scheduling Our Q1 2026 Business Review Meeting
+
+Dear Team,
+
+I hope this message finds you well. I would like to schedule our quarterly busine..."
+7,Respond to a client's pricing objection,persuasive,advanced,gpt-4o-mini,100.0,81.0,77.5,"Subject: Addressing Your Pricing Concerns
+
+Dear [Client's Name],
+
+Thank you for sharing your thoughts regarding our annual plan pricing at $24,000. I ..."
+8,Thank a client for referring a new customer,warm-grateful,advanced,gpt-4o-mini,100.0,92.0,92.5,"Subject: Thank You for Your Referral!
+
+Dear [Client's Name],
+
+I hope this message finds you well! I wanted to take a moment to express our heartfelt g..."
+9,Escalate an unresolved customer support issue internally,urgent,advanced,gpt-4o-mini,100.0,97.0,87.5,"Subject: Urgent Escalation: Unresolved Support Ticket #4892
+
+Dear Team,
+
+I am reaching out to escalate an unresolved customer support issue that requi..."
+10,Re-engage a dormant lead who hasn't responded in 3 months,casual-compelling,advanced,gpt-4o-mini,100.0,89.0,87.5,"Subject: Exciting Updates Since Our Last Chat!
+
+Hey there,
+
+It’s been a while since we connected at the SaaS Connect conference in January! I hope all..."
+1,Follow up after a product demo meeting,formal,baseline,gpt-4o-mini,100.0,86.0,87.5,"Subject: Follow-Up on Product Demo and Next Steps
+
+Dear [Client's Name],
+
+I hope this message finds you well. I wanted to take a moment to follow up o..."
+2,Request proposal details from a potential vendor,professional,baseline,gpt-4o-mini,100.0,94.0,92.5,"Subject: Request for Proposal Details for CRM Migration
+
+Dear [Vendor's Name],
+
+I hope this message finds you well.
+
+We are currently in the process o..."
+3,Cold outreach to a prospective client about our sales automation tool,friendly-casual,baseline,gpt-4o-mini,100.0,68.0,82.5,"Subject: Boost Your Sales with Our Automation Tool – Free Demo Inside!
+
+Hi [Prospect's Name],
+
+I hope this message finds you well! I recently came acr..."
+4,Apologize for a missed project deadline,empathetic,baseline,gpt-4o-mini,100.0,78.0,87.5,"Subject: Apology for Missed Project Deadline
+
+Dear [Recipient's Name],
+
+I hope this message finds you well. I am writing to sincerely apologize for no..."
+5,Introduce a new AI-powered feature to existing customers,excited,baseline,gpt-4o-mini,100.0,92.0,82.5,"Subject: Exciting New Feature: Introducing Smart Compose for Our Pro Plan Users!
+
+Dear Valued Customer,
+
+We are thrilled to announce an exciting new f..."
+6,Schedule a quarterly business review meeting,neutral,baseline,gpt-4o-mini,100.0,89.0,92.5,"Subject: Scheduling Q1 2026 Quarterly Business Review Meeting
+
+Dear [Recipient's Name],
+
+I hope this message finds you well.
+
+I would like to schedule..."
+7,Respond to a client's pricing objection,persuasive,baseline,gpt-4o-mini,100.0,89.0,82.5,"Subject: Flexible Payment Options and Unmatched Value for Your Investment
+
+Dear [Client's Name],
+
+Thank you for your candid feedback regarding our ann..."
+8,Thank a client for referring a new customer,warm-grateful,baseline,gpt-4o-mini,100.0,92.0,92.5,"Subject: Thank You for Your Referral!
+
+Dear [Client's Name],
+
+I hope this message finds you well! I wanted to take a moment to personally thank you fo..."
+9,Escalate an unresolved customer support issue internally,urgent,baseline,gpt-4o-mini,100.0,89.0,82.5,"Subject: Urgent: Escalation of Unresolved Customer Support Issue - Ticket #4892
+
+Dear [Team/Manager's Name],
+
+I hope this message finds you well. I am..."
+10,Re-engage a dormant lead who hasn't responded in 3 months,casual-compelling,baseline,gpt-4o-mini,100.0,81.0,82.5,"Subject: Exciting Updates and an Exclusive Offer Just for You!  
+
+Hi [Recipient's Name],  
+
+I hope this email finds you well! It’s been a while since ..."
