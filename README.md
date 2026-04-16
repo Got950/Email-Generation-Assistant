@@ -176,6 +176,3 @@ A few things I'd add given more time:
 - **Token-level streaming** — SSE for real-time token streaming in the email generation UI
 - **A/B routing** — serve both strategies in production and collect metrics automatically to validate offline eval findings
 
-## License
-
-MIT
