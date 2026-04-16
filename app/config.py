@@ -26,7 +26,7 @@ class Settings(BaseSettings):
 
     @property
     def has_valid_key(self) -> bool:
-        """Check if the OpenAI API key is configured (non-empty, non-dummy)."""
+        """True when the key looks real (starts with sk-, isn't a test stub)."""
         return bool(
             self.openai_api_key
             and self.openai_api_key.startswith("sk-")
@@ -34,8 +34,7 @@ class Settings(BaseSettings):
         )
 
     def get_model_name(self, role: str) -> str:
-        """Return the model name for a role (primary/baseline/judge).
-        If explicitly set in .env, use that. Otherwise pick OpenAI defaults."""
+        """Look up model for a given role; falls back to OPENAI_MODELS defaults."""
         explicit = getattr(self, f"{role}_model", "")
         if explicit:
             return explicit
@@ -49,7 +48,3 @@ def get_settings() -> Settings:
     return s
 
 
-def reset_settings() -> Settings:
-    """Clear cached settings and reload from .env. Useful for testing."""
-    get_settings.cache_clear()
-    return get_settings()

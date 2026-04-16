@@ -18,7 +18,6 @@ export function Sidebar({ currentPage, onNavigate, health }: Props) {
 
   return (
     <aside className="w-[232px] flex-shrink-0 h-screen border-r border-white/[0.06] bg-[#080b11] flex flex-col">
-      {/* Brand */}
       <div className="px-5 pt-6 pb-5">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
@@ -33,7 +32,6 @@ export function Sidebar({ currentPage, onNavigate, health }: Props) {
         </div>
       </div>
 
-      {/* Navigation */}
       <nav className="flex-1 px-3 pt-1">
         <div className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-600 px-3 mb-2">
           Navigation
@@ -60,7 +58,6 @@ export function Sidebar({ currentPage, onNavigate, health }: Props) {
         </div>
       </nav>
 
-      {/* System status */}
       <div className="px-5 py-4 border-t border-white/[0.06]">
         <div className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-600 mb-3">
           System

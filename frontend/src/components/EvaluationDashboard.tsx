@@ -207,7 +207,6 @@ export function EvaluationDashboard({ active }: { active?: boolean }) {
   return (
     <div className="flex-1 h-screen overflow-y-auto bg-[#0B0F14]">
       <div className="max-w-5xl mx-auto p-8">
-        {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-[22px] font-bold text-gray-100 tracking-tight">
@@ -243,7 +242,6 @@ export function EvaluationDashboard({ active }: { active?: boolean }) {
           </div>
         </div>
 
-        {/* Progress */}
         {running && total > 0 && (
           <div className="mb-8">
             <div className="flex items-center justify-between mb-2">
@@ -263,7 +261,6 @@ export function EvaluationDashboard({ active }: { active?: boolean }) {
           </div>
         )}
 
-        {/* Summary cards */}
         {strategies.length > 0 && (
           <div className={`grid gap-4 mb-8 ${strategies.length >= 2 ? "grid-cols-2" : "grid-cols-1"}`}>
             {strategies.map((strat) => (
@@ -277,7 +274,6 @@ export function EvaluationDashboard({ active }: { active?: boolean }) {
           </div>
         )}
 
-        {/* Live results feed */}
         {(results.length > 0 || errors > 0) && (
           <div>
             <div className="flex items-center justify-between mb-3">
@@ -332,7 +328,6 @@ export function EvaluationDashboard({ active }: { active?: boolean }) {
           </div>
         )}
 
-        {/* Done state */}
         {done && (
           <div className="mt-6 flex items-center gap-2 px-4 py-3 bg-emerald-500/[0.06] border border-emerald-500/15 rounded-xl">
             <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
@@ -343,7 +338,6 @@ export function EvaluationDashboard({ active }: { active?: boolean }) {
           </div>
         )}
 
-        {/* Empty state (first load, before auto-start fires) */}
         {!running && results.length === 0 && !done && (
           <div className="flex flex-col items-center justify-center py-20 text-center">
             <div className="w-14 h-14 rounded-2xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center mb-4">

@@ -1,17 +1,10 @@
-"""
-Custom Metric 3: Professional Quality Score (0-100)
+"""Professional Quality metric (0-100).
 
-Measures overall email quality through four sub-dimensions:
-
-  1. Readability (0-25): Flesch Reading Ease score, mapped to a 0-25 range.
-     Business emails should target FRE 50-70 (fairly easy to standard).
-  2. Conciseness (0-25): Penalizes emails too long or too short relative
-     to the reference email length.
-  3. Structure (0-25): Checks for essential email components — subject line,
-     greeting, body paragraphs, professional sign-off, no placeholders.
-  4. Grammar & Fluency (0-25): LLM judge rates grammar and fluency 1-10.
-
-Final score = sum of all four sub-scores, clamped to [0, 100].
+Four equally-weighted sub-scores (each 0-25):
+  Readability  – Flesch Reading Ease, sweet spot 50-70 for business email.
+  Conciseness  – word count vs. reference; big deviations get penalised.
+  Structure    – presence of subject line, greeting, paragraphs, sign-off.
+  Grammar      – LLM judge rates fluency on a 1-10 rubric.
 """
 
 import logging
@@ -45,7 +38,7 @@ MIN_WORDS_FOR_READABILITY = 20
 
 
 def _compute_readability_score(email: str) -> tuple[float, str]:
-    """Map Flesch Reading Ease to 0-25 scale. Optimal range: 50-70."""
+    """Flesch Reading Ease mapped to 0-25; sweet spot is FRE 50-70."""
     import textstat
 
     word_count = len(email.split())
@@ -73,7 +66,7 @@ def _compute_readability_score(email: str) -> tuple[float, str]:
 
 
 def _compute_conciseness_score(email: str, reference_email: str) -> tuple[float, str]:
-    """Penalize emails that deviate significantly from reference length."""
+    """Word-count ratio vs reference email; big deviations lose points."""
     gen_words = len(email.split())
 
     if not reference_email or not reference_email.strip():
@@ -100,7 +93,7 @@ def _compute_conciseness_score(email: str, reference_email: str) -> tuple[float,
 
 
 def _compute_structure_score(email: str) -> tuple[float, str]:
-    """Check for essential structural components."""
+    """Checks for subject, greeting, paragraphs, sign-off, no placeholders."""
     if not email or not email.strip():
         return 0.0, "0/5 checks passed (empty email)"
 
@@ -130,7 +123,7 @@ def _compute_structure_score(email: str) -> tuple[float, str]:
 
 
 async def _compute_grammar_score(email: str) -> tuple[float, str]:
-    """LLM judge rates grammar and fluency."""
+    """LLM rates grammar/fluency 1-10, scaled to 0-25."""
     try:
         model = get_judge_model()
         chain = GRAMMAR_JUDGE_PROMPT | model

@@ -27,17 +27,6 @@ st.set_page_config(
 ROOT = Path(__file__).resolve().parent.parent
 REPORTS_DIR = ROOT / "reports"
 DATA_DIR = ROOT / "data"
-# #region agent log
-import json as _dj
-_DLOG = ROOT / "debug-6b90d1.log"
-def _dl(loc, msg, data=None, hyp=""):
-    with open(_DLOG, "a") as _f:
-        _f.write(_dj.dumps({"sessionId":"6b90d1","location":loc,"message":msg,"data":data or {},"hypothesisId":hyp,"timestamp":int(time.time()*1000)})+"\n")
-# #endregion
-
-# #region agent log
-_dl("streamlit_app.py:init", "Streamlit version", {"version": st.__version__}, "A,C,E")
-# #endregion
 # ── Design tokens ────────────────────────────────────────────────────────
 C = {
     "bg": "#0f1117", "surface": "#1a1c23", "surface2": "#23262f",
@@ -357,13 +346,7 @@ def load_scenarios():
     if p.exists():
         with open(p, "r", encoding="utf-8") as f:
             data = json.load(f)
-        # #region agent log
-        _dl("streamlit_app.py:load_scenarios", "loaded", {"count": len(data), "path": str(p)}, "D")
-        # #endregion
         return data
-    # #region agent log
-    _dl("streamlit_app.py:load_scenarios", "file missing", {"path": str(p)}, "D")
-    # #endregion
     return []
 
 
@@ -372,13 +355,7 @@ def load_report():
     if p.exists():
         with open(p, "r", encoding="utf-8") as f:
             data = json.load(f)
-        # #region agent log
-        _dl("streamlit_app.py:load_report", "loaded", {"keys": list(data.keys()) if isinstance(data, dict) else "not-dict"}, "D")
-        # #endregion
         return data
-    # #region agent log
-    _dl("streamlit_app.py:load_report", "no report file", {"path": str(p)}, "D")
-    # #endregion
     return None
 
 
@@ -467,9 +444,6 @@ with st.sidebar:
     st.markdown('<div class="nav-section">Pages</div>', unsafe_allow_html=True)
     page = st.radio("Nav", ["Generate Email", "Evaluation Dashboard", "Test Scenarios"],
                     label_visibility="collapsed")
-    # #region agent log
-    _dl("streamlit_app.py:page", "page selected", {"page": page}, "A,D")
-    # #endregion
 
     st.markdown("---")
     st.markdown('<div class="nav-section">Architecture</div>', unsafe_allow_html=True)
@@ -480,16 +454,10 @@ with st.sidebar:
         provider = settings.resolved_provider.upper()
         model = settings.get_model_name("primary")
         has_key = settings.has_valid_key
-        # #region agent log
-        _dl("streamlit_app.py:sidebar", "settings loaded ok", {"provider": provider, "model": model, "has_key": has_key}, "B")
-        # #endregion
-    except Exception as _exc:
+    except Exception:
         provider = "Not configured"
         model = "—"
         has_key = False
-        # #region agent log
-        _dl("streamlit_app.py:sidebar", "settings FAILED", {"error": str(_exc)}, "B")
-        # #endregion
 
     key_dot = C["green"] if has_key else C["red"]
     key_label = "Connected" if has_key else "No API key"

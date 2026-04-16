@@ -83,7 +83,6 @@ export function OutputPanel({ result, loading, error, onRegenerate }: Props) {
   return (
     <div className="flex-1 h-screen overflow-y-auto bg-[#0B0F14]">
       <div className="p-8 max-w-3xl mx-auto">
-        {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div>
             <h2 className="text-[22px] font-bold text-gray-100 tracking-tight">
@@ -111,21 +110,18 @@ export function OutputPanel({ result, loading, error, onRegenerate }: Props) {
           )}
         </div>
 
-        {/* Error */}
         {error && (
           <div className="mb-6 px-5 py-4 rounded-xl bg-red-500/[0.08] border border-red-500/20">
             <p className="text-sm text-red-400 font-medium">{error}</p>
           </div>
         )}
 
-        {/* Loading skeleton */}
         {loading && (
           <div className="bg-[#111827]/60 border border-white/[0.06] rounded-2xl overflow-hidden">
             <Skeleton />
           </div>
         )}
 
-        {/* Empty state */}
         {!result && !loading && !error && (
           <div className="flex flex-col items-center justify-center py-24 text-center">
             <div className="w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center mb-5">
@@ -142,10 +138,8 @@ export function OutputPanel({ result, loading, error, onRegenerate }: Props) {
           </div>
         )}
 
-        {/* Result */}
         {result && !loading && (
           <div className="space-y-4">
-            {/* Badges */}
             <div className="flex items-center gap-2 flex-wrap">
               <span
                 className={[
@@ -173,9 +167,7 @@ export function OutputPanel({ result, loading, error, onRegenerate }: Props) {
               )}
             </div>
 
-            {/* Email card */}
             <div className="bg-[#111827]/60 border border-white/[0.06] rounded-2xl overflow-hidden shadow-2xl shadow-black/30 backdrop-blur-sm">
-              {/* Subject */}
               <div className="px-7 py-5 border-b border-white/[0.04]">
                 <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-600 mb-1.5">
                   Subject
@@ -184,7 +176,6 @@ export function OutputPanel({ result, loading, error, onRegenerate }: Props) {
                   {subject || "No subject"}
                 </p>
               </div>
-              {/* Body */}
               <div className="px-7 py-6">
                 <div className="text-[14px] text-gray-300 leading-[1.85] whitespace-pre-wrap">
                   {body}
@@ -192,7 +183,6 @@ export function OutputPanel({ result, loading, error, onRegenerate }: Props) {
               </div>
             </div>
 
-            {/* Send actions */}
             <div className="flex items-center gap-2 pt-1">
               <a
                 href={gmailUrl}

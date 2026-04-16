@@ -67,7 +67,6 @@ export function InputPanel({ onGenerate, loading }: Props) {
   return (
     <div className="w-[460px] flex-shrink-0 border-r border-white/[0.06] h-screen overflow-y-auto bg-[#0B0F14]">
       <div className="p-8">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-[22px] font-bold text-gray-100 tracking-tight">
             Compose Email
@@ -78,7 +77,6 @@ export function InputPanel({ onGenerate, loading }: Props) {
         </div>
 
         <div className="space-y-6">
-          {/* Intent */}
           <fieldset>
             <label className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 mb-2 block">
               Intent
@@ -98,7 +96,6 @@ export function InputPanel({ onGenerate, loading }: Props) {
             </p>
           </fieldset>
 
-          {/* Key Facts */}
           <fieldset>
             <div className="flex items-center justify-between mb-2">
               <label className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">
@@ -123,7 +120,6 @@ export function InputPanel({ onGenerate, loading }: Props) {
             </p>
           </fieldset>
 
-          {/* Tone */}
           <fieldset>
             <label className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 mb-2.5 block">
               Tone
@@ -150,7 +146,6 @@ export function InputPanel({ onGenerate, loading }: Props) {
             </div>
           </fieldset>
 
-          {/* Strategy */}
           <fieldset>
             <div className="flex items-center gap-2 mb-2.5">
               <label className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">
@@ -194,7 +189,6 @@ export function InputPanel({ onGenerate, loading }: Props) {
             </div>
           </fieldset>
 
-          {/* Generate */}
           <button
             onClick={submit}
             disabled={!canSubmit}

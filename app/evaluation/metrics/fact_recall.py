@@ -1,15 +1,8 @@
-"""
-Custom Metric 1: Fact Recall Score (0-100)
+"""Fact Recall metric (0-100).
 
-Measures whether ALL key facts from the input are present in the generated email.
-
-Approach (hybrid):
-  1. LLM-as-Judge: For each fact, ask the judge model if it's present in the email.
-     Returns binary present/absent per fact.
-  2. Semantic Similarity Fallback: Use sentence-transformers to compute cosine
-     similarity between each fact and the most similar sentence in the email.
-     A fact is considered recalled if similarity >= 0.75.
-  3. Final score = (facts_confirmed / total_facts) * 100
+For each key fact we ask the judge LLM "is this present in the email?".
+If the LLM call fails or says NO, we fall back to cosine similarity via
+sentence-transformers (threshold 0.75).  Score = confirmed / total * 100.
 """
 
 import logging
@@ -48,7 +41,7 @@ async def _check_single_fact_llm(fact: str, email: str) -> bool:
 
 
 def _check_single_fact_semantic(fact: str, email_sentences: list[str], model) -> bool:
-    """Fallback: check if fact semantically matches any sentence in the email."""
+    """Cosine-sim fallback when the LLM judge is unavailable."""
     try:
         from sentence_transformers import util
 

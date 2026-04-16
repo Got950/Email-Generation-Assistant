@@ -1,14 +1,9 @@
-"""
-Custom Metric 2: Tone Alignment Score (0-100)
+"""Tone Alignment metric (0-100).
 
-Measures whether the generated email's tone matches the requested tone.
-
-Approach (hybrid):
-  1. LLM-as-Judge (primary, 80% weight): A judge model rates how well the email
-     matches the requested tone on a 1-10 scale using a detailed rubric.
-  2. Sentiment Analysis (secondary, 20% weight): VADER sentiment is used as a
-     sanity-check signal. Certain tones have expected sentiment profiles.
-  3. Final score = (LLM score * 0.8 + sentiment signal * 0.2) * 10, capped at 100.
+Blends an LLM rubric score (80 % weight) with a VADER/TextBlob sentiment
+sanity-check (20 % weight).  The sentiment profiles in TONE_SENTIMENT_PROFILES
+encode rough expected ranges so we can catch obvious mismatches even if the LLM
+is generous.
 """
 
 import logging
@@ -69,7 +64,7 @@ async def _get_llm_tone_score(tone: str, email: str) -> int:
 
 
 def _get_sentiment_signal(tone: str, email: str) -> float:
-    """Returns a score 0-10 based on sentiment profile match."""
+    """VADER + TextBlob sentiment check against expected tone profile (0-10)."""
     try:
         from textblob import TextBlob
         from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer

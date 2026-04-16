@@ -1,6 +1,4 @@
-"""
-Evaluation runner: orchestrates email generation and scoring across all scenarios and strategies.
-"""
+"""Runs every scenario x strategy combination and collects metric scores."""
 
 import asyncio
 import json
@@ -61,7 +59,7 @@ async def evaluate_single_scenario(
     scenario: dict,
     strategy: str,
 ) -> ScenarioResult:
-    """Generate an email for one scenario with one strategy, then score it."""
+    """Generate + score a single scenario/strategy pair."""
     if strategy not in STRATEGY_MAP:
         raise ValueError(f"Unknown strategy '{strategy}'. Available: {list(STRATEGY_MAP.keys())}")
 
@@ -124,7 +122,7 @@ async def evaluate_single_scenario(
 
 
 def _compute_summary(results: list[ScenarioResult]) -> dict:
-    """Compute average scores per strategy."""
+    """Average scores grouped by strategy."""
     from collections import defaultdict
 
     if not results:
@@ -154,7 +152,7 @@ def _compute_summary(results: list[ScenarioResult]) -> dict:
 async def run_evaluation(
     strategies: list[str] | None = None,
 ) -> tuple[list[ScenarioResult], dict]:
-    """Run the full evaluation pipeline."""
+    """Run every scenario x strategy and return (results, summary)."""
     if strategies is None:
         strategies = ["advanced", "baseline"]
 

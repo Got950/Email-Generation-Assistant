@@ -1,9 +1,7 @@
-"""
-LangChain chains for email generation.
+"""Email generation using two prompting strategies.
 
-Two strategies:
-  - AdvancedEmailChain: CoT + Few-Shot + Role-Play with self-reflection critic loop
-  - BaselineEmailChain: Zero-shot simple prompt
+`generate_advanced` uses chain-of-thought, few-shot examples, and a self-reflection
+critic loop.  `generate_baseline` is a plain zero-shot prompt for comparison.
 """
 
 import logging
@@ -39,7 +37,7 @@ def _format_key_facts(facts: list[str]) -> str:
 
 
 def _looks_like_email(text: str) -> bool:
-    """Quick heuristic: does the text resemble an actual email?"""
+    """Rough check: does the text look like a real email?"""
     if not text or len(text.strip()) < 30:
         return False
     return bool(_SUBJECT_RE.search(text)) or "regards" in text.lower()
@@ -70,7 +68,7 @@ async def _run_critic(
     tone: str,
     draft_email: str,
 ) -> tuple[str, bool]:
-    """Run a single critic pass. Returns (final_email, was_revised)."""
+    """Single critic pass — returns (email, was_revised)."""
     try:
         prompt = build_critic_prompt()
         chain = prompt | critic_model

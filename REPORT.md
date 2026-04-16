@@ -1,30 +1,28 @@
-# Email Generation Assistant — Comparative Analysis Report
+# Comparative Analysis — Advanced vs Baseline Email Generation
 
 ## 1. Setup
 
-### Models & Strategies Compared
+Both strategies use **gpt-4o-mini** so the comparison is purely about prompting technique, not model capability.
 
-| Label | Model | Prompting Strategy | Description |
-|-------|-------|--------------------|-------------|
-| **Advanced** | gpt-4o-mini | CoT + Few-Shot + Role-Play + Self-Reflection | Full advanced pipeline with a B2B sales specialist persona, 3 few-shot examples, chain-of-thought planning, and a critic revision loop |
-| **Baseline** | gpt-4o-mini | Zero-Shot Instruction | Simple instruction prompt ("Write a professional email...") with no examples or reasoning steps |
+| Label | Prompting Strategy | What it does |
+|-------|-------------------|--------------|
+| **Advanced** | CoT + Few-Shot + Role-Play + Self-Reflection | B2B sales persona, 3 few-shot demos, explicit planning step, then a critic model revises the draft |
+| **Baseline** | Zero-Shot | One-shot "Write a professional email …" with no examples or reasoning scaffold |
 
-### Evaluation Metrics
+### Metrics
 
-1. **Fact Recall (0-100)**: Measures whether all input key facts are present in the generated email. Uses LLM-as-Judge per-fact verification with sentence-transformer semantic similarity as a fallback.
-
-2. **Tone Alignment (0-100)**: Measures how well the email's tone matches the requested tone. Combines LLM-as-Judge rating (80% weight) with VADER sentiment analysis (20% weight).
-
-3. **Professional Quality (0-100)**: Composite metric across four sub-dimensions — Readability (Flesch Reading Ease), Conciseness (length ratio vs reference), Structure (greeting/body/sign-off checks), and Grammar & Fluency (LLM judge).
+- **Fact Recall (0-100)** — Are all key facts present? LLM-as-Judge per fact, with sentence-transformer cosine similarity fallback.
+- **Tone Alignment (0-100)** — Does the email *sound* right? 80 % LLM rubric score + 20 % VADER/TextBlob sentiment check.
+- **Professional Quality (0-100)** — Readability + conciseness + structural completeness + grammar, each worth 25 points.
 
 ---
 
 ## 2. Results
 
-### Per-Scenario Scores
+### Per-Scenario Breakdown
 
-| Scenario | Tone | Advanced Fact | Advanced Tone | Advanced Quality | Baseline Fact | Baseline Tone | Baseline Quality |
-|----------|------|---------------|---------------|------------------|---------------|---------------|------------------|
+| # | Tone | Adv Fact | Adv Tone | Adv Quality | Base Fact | Base Tone | Base Quality |
+|---|------|----------|----------|-------------|-----------|-----------|-------------|
 | 1 | formal | 100.0 | 86.0 | 92.5 | 100.0 | 86.0 | 87.5 |
 | 2 | professional | 100.0 | 89.0 | 87.5 | 100.0 | 94.0 | 92.5 |
 | 3 | friendly-casual | 100.0 | 60.0 | 87.5 | 100.0 | 68.0 | 82.5 |
@@ -36,75 +34,59 @@
 | 9 | urgent | 100.0 | 97.0 | 87.5 | 100.0 | 89.0 | 82.5 |
 | 10 | casual-compelling | 100.0 | 89.0 | 87.5 | 100.0 | 81.0 | 82.5 |
 
-### Average Scores
+### Averages
 
-| Metric | Advanced (gpt-4o-mini) | Baseline (gpt-4o-mini) | Delta |
-|--------|-------------------|------------------------|-------|
-| Fact Recall | 100.0 | 100.0 | +0.0 |
+| Metric | Advanced | Baseline | Delta |
+|--------|----------|----------|-------|
+| Fact Recall | 100.0 | 100.0 | 0 |
 | Tone Alignment | 86.4 | 85.8 | +0.6 |
 | Professional Quality | 88.5 | 86.5 | +2.0 |
-| **Overall Average** | **91.6** | **90.8** | **+0.8** |
+| **Overall** | **91.6** | **90.8** | **+0.8** |
+
+Fact recall is perfect for both — gpt-4o-mini is already strong at surface-level fact inclusion even without few-shot examples. The real gap shows up in quality and, to a lesser extent, tone.
 
 ---
 
-## 3. Failure Mode Analysis
+## 3. Where Each Strategy Struggles
 
-### Baseline Strategy — Key Weaknesses
+### Baseline weaknesses
 
-**Biggest failure mode: Professional Quality** (gap of 2.0 points)
+The biggest gap is **Professional Quality** (2 pts). Without few-shot examples the baseline produces emails that are structurally fine but less polished: sign-offs sometimes feel generic, paragraph breaks are inconsistent, and the model occasionally adds filler sentences that hurt conciseness.
 
-The baseline strategy scored 86.5 vs the advanced strategy's 88.5 on Professional Quality. This is the largest performance gap between the two strategies and represents the primary area where the baseline approach falls short.
+Scenario 3 (friendly-casual) is an interesting outlier — both strategies scored low on tone, but the baseline actually edged out the advanced on tone (68 vs 60). Casual tone is tricky because the few-shot examples in the advanced prompt are all business-formal, which can pull the model *away* from casual language. Worth revisiting those examples.
 
-Key observations:
-- Without few-shot examples, the baseline model lacks structural anchoring, leading to inconsistent email formats.
-- The absence of chain-of-thought planning means facts are more likely to be missed or vaguely paraphrased.
-- No critic loop means there is no self-correction mechanism for tone drift or fact omission.
+### Advanced weaknesses
 
-### Advanced Strategy — Observed Strengths
-
-The advanced strategy consistently outperforms across all metrics with an overall average of 91.6 vs 90.8:
-- Few-shot examples provide a structural template the model anchors to.
-- Chain-of-thought planning ensures facts are deliberately placed in paragraphs.
-- The critic loop catches and corrects fact omissions and tone inconsistencies before final output.
+Scenario 7 (persuasive) is the advanced strategy's worst quality score (77.5) — lower than the baseline's 82.5. The critic pass sometimes over-corrects persuasive emails, softening the language too much and making them read less convincingly. The critic prompt could use a carve-out for intentionally assertive tones.
 
 ---
 
-## 4. Production Recommendation
+## 4. Recommendation
 
-**Recommended: Advanced Strategy**
+**Use the Advanced strategy as the default**, with caveats.
 
-### Justification
+| | Advanced | Baseline |
+|--|----------|----------|
+| Overall score | 91.6 | 90.8 |
+| Latency | ~3-5 s (draft + critic) | ~1-2 s |
+| Cost / email | ~$0.02-0.04 | ~$0.002-0.005 |
 
-| Factor | Advanced | Baseline |
-|--------|----------|----------|
-| Fact Recall | 100.0 | 100.0 |
-| Tone Alignment | 86.4 | 85.8 |
-| Professional Quality | 88.5 | 86.5 |
-| **Overall** | **91.6** | **90.8** |
-| Latency | ~3-5s (2 LLM calls with critic) | ~1-2s (single call) |
-| Cost per email | ~$0.02-0.04 | ~$0.002-0.005 |
+The quality uplift is modest (+0.8 overall) but consistent, and the critic loop is a safety net against hallucinated facts in edge cases that didn't surface in these 10 scenarios. For a production sales tool, that safety net is worth the extra second of latency.
 
-### Trade-off Analysis
-
-- **For production use in sales email automation**: Fact accuracy is non-negotiable. A missed fact in a sales follow-up can lose a deal. The cost difference is negligible at typical email volumes (even 10,000 emails/month < $400 with GPT-4o).
-- **Possible hybrid approach**: Use the advanced strategy for high-value emails (first touch, proposals, escalations) and baseline for high-volume low-stakes emails (meeting confirmations, acknowledgments) with a routing layer based on intent classification.
+That said, a **hybrid routing** approach makes sense: send high-value emails (first-touch, proposals) through the advanced pipeline and use baseline for bulk low-stakes messages (meeting confirmations, internal updates). Intent classification can drive the routing cheaply.
 
 ---
 
-## 5. Prompt Template Documentation
+## 5. Prompt Documentation
 
-### Advanced Strategy Prompt
+### Advanced prompt
 
-**Technique**: Role-Playing + Few-Shot Examples + Chain-of-Thought
+- **Role-play**: system message assigns a "B2B sales communications specialist" persona with explicit rules (include every fact, match requested tone, keep it concise).
+- **Few-shot examples**: 3 complete intent → email demos covering formal, casual, and empathetic tones so the model has structural anchors.
+- **Chain-of-thought**: user message tells the model to silently plan (identify CTA, map facts to paragraphs, pick tone vocabulary) before writing.
+- **Self-reflection**: a second LLM call critiques the draft for fact coverage, tone consistency, and structural quality — revising only if something is off.
 
-- **System Message**: Assigns the model a B2B sales communications specialist persona with explicit rules (include all facts, match tone, clear structure, concise).
-- **Few-Shot Examples**: 3 complete input → email examples covering formal, casual, and empathetic tones, giving the model a structural anchor.
-- **Chain-of-Thought**: The user message instructs the model to silently plan (identify primary CTA, map facts to paragraphs, select tone-appropriate vocabulary) before generating the final email.
-- **Self-Reflection**: A separate critic pass verifies fact inclusion, tone consistency, and structural completeness — revising the draft if needed.
+### Baseline prompt
 
-### Baseline Strategy Prompt
-
-**Technique**: Zero-Shot Instruction
-
-- **System Message**: Minimal ("You are a helpful assistant that writes professional emails").
-- **User Message**: Direct instruction with the three inputs. No examples, no reasoning scaffold.
+- System: *"You are a helpful assistant that writes professional emails."*
+- User: intent + facts + tone in a single message. No examples, no reasoning steps.

@@ -1,7 +1,4 @@
-"""
-Model factory: creates LangChain ChatOpenAI instances for primary, baseline, and judge roles.
-Includes automatic retry with backoff for rate-limited APIs.
-"""
+"""Thin wrapper around ChatOpenAI that handles model selection and rate-limit retries."""
 
 import asyncio
 import logging
@@ -41,13 +38,13 @@ def get_baseline_model(temperature: float = 0.7) -> BaseChatModel:
 
 
 def get_judge_model() -> BaseChatModel:
-    """Judge uses temperature=0 for deterministic evaluation."""
+    """Judge model — temperature=0 for consistent evaluation."""
     s = get_settings()
     return _build_model(s.get_model_name("judge"), temperature=0.0)
 
 
 async def invoke_with_retry(chain, inputs: dict, max_retries: int = MAX_RETRIES) -> str:
-    """Invoke a chain with exponential backoff retry for rate limits."""
+    """Call a chain, retrying on 429s with exponential backoff."""
     for attempt in range(max_retries + 1):
         try:
             response = await chain.ainvoke(inputs)
