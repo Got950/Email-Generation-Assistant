@@ -410,7 +410,8 @@ def test_settings_get_model_name_defaults():
 
     s = Settings(openai_api_key="sk-real-key")
     assert s.get_model_name("primary") == "gpt-4o-mini"
-    assert s.get_model_name("baseline") == "gpt-4o-mini"
+    assert s.get_model_name("baseline") == "gpt-3.5-turbo"
+    assert s.get_model_name("judge") == "gpt-4o"
 
 
 def test_settings_get_model_name_explicit():
