@@ -6,7 +6,7 @@ from pydantic_settings import BaseSettings
 
 logger = logging.getLogger(__name__)
 
-OPENAI_MODELS = {"primary": "gpt-4o-mini", "baseline": "gpt-4o-mini", "judge": "gpt-4o-mini"}
+OPENAI_MODELS = {"primary": "gpt-4o-mini", "baseline": "gpt-3.5-turbo", "judge": "gpt-4o"}
 
 
 class Settings(BaseSettings):
